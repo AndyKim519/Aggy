@@ -27,13 +27,13 @@
 .navbar a:hover {
   color: #024021;
 }
-.navbar .login {
+.navbar .button {
   color: #f2f2f2;
   background-color: #024021;
   border-radius: 8px;
 }
 
-.navbar .login:hover {
+.navbar .button:hover {
   color: #024021;
   background-color: #f2f2f2;
   border-radius: 8px;
