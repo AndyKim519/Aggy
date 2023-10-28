@@ -18,7 +18,23 @@ def generate_unique_network_id(db):
     return network_id
 
 def validityCheck(networkID, interviews):
+    # TODO ABSTRACTED AS HELL
     results = []
     for interview in interviews:
         results.append(True)
     return results
+
+def handleAudio(audio):
+    # TODO ABSTRACTED AS HELL
+    text = ""
+    return text
+
+def handleSummary(networkID):
+    # TODO ABSTRACTED AS HELL
+    summary = ""
+    return summary
+
+def handleQuestion(networkID, question):
+    # TODO ABSTRACTED AS HELL
+    response = ""
+    return response

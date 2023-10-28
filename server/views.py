@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask import current_app as app
-from firebase_utils import newNetwork
+from firebase_utils import *
+from logic import *
 
 app_views = Blueprint('app_views', __name__)
 
@@ -15,21 +16,26 @@ def createNetwork():
 @app_views.route('/postaudio', methods=['POST'])
 def postAudio():
     req_data = request.get_json()
+    networkID = req_data.get('networkID')
     audio_file = req_data.get('audio')
+    convertedText = handleAudio(audio_file)
+    userInput(networkID, convertedText)
     return
 
 @app_views.route('/postforsummary', methods=['POST'])
 def postForSummary():
     req_data = request.get_json()
     networkID = req_data.get('networkID')
-    return
+    summary = handleSummary(networkID)
+    return summary
 
 @app.views.route('/postforquestion', methods=['POST'])
 def postForQuestion():
     req_data = request.get_json()
     networkID = req_data.get('networkID')
     question = req_data.get('question')
-    return
+    response = handleQuestion(networkID, question)
+    return response
 
 
 
