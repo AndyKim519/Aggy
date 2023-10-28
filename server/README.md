@@ -6,7 +6,7 @@ logic.py: deals with ML APIs
 
 # When you first pull the repository  
 
-(make sure you cd into the server folder)  
+***make sure you cd into the server folder*** 
 
 1. python3 -m venv venv # creates your virtual environment  
 2. source venv/bin/activate # activates your virtual environment  
