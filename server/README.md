@@ -1,10 +1,10 @@
-# Relevant information for client server  
+# Relevant information for backend server  
 
 server.py: root server (imports database.py and logic.py)  
 database.py: deals with database works  
 logic.py: deals with ML APIs  
 
-# When you first pull 
+# When you first pull the repository  
 
 (make sure you cd into the server folder)  
 
