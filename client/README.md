@@ -11,7 +11,7 @@ src/host/Host.js: React component for the main Host page
 src/host/NewNetwork.js: React component for the New Network page  
 src/host/Summary.js: React component for Summary page  
 
-# When you first pull the file  
+# When you first pull the repository  
 
 When you first pull: npm install # install all relevant depndencies that are listed in package.json  
 
