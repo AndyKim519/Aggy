@@ -1,3 +1,5 @@
+# Relevant information for client server  
+
 public/index.html: root html that is loaded when we run npm start  
 src/index.js: index file that connects our index.html to App.js  
 src/index.css: central css file for all of our react components  
@@ -8,6 +10,8 @@ src/Upload.js: React component for the Upload page
 src/host/Host.js: React component for the main Host page
 src/host/NewNetwork.js: React component for the New Network page
 src/host/Summary.js: React component for Summary page
+
+# When you first pull the file  
 
 When you first pull: npm install # install all relevant depndencies that are listed in package.json
 
