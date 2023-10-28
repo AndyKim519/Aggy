@@ -27,16 +27,49 @@ def userInput(networkID, text):
     doc_ref.update({
         'userTexts': firestore.ArrayUnion([text])
     })
-    if validityCheck(networkID, text):
-        doc_ref.update({
-        'apporovedTexts': firestore.ArrayUnion([text])
-    })
-    else:
-        doc_ref.update({
-        'rejectedTexts': firestore.ArrayUnion([text])
-    })
+    return
+
+def checkTextsValidity(networkID):
+    doc_ref = db.collection("Networks").document(networkID)
+    texts = doc_ref.to_dict()["userTexts"]
+    isValid = validityCheck(networkID, texts)
+    for i in range(len(texts)):
+        if isValid[i]:
+            doc_ref.update({
+            'apporovedTexts': firestore.ArrayUnion([texts[i]])
+            })
+        else:
+            doc_ref.update({
+            'rejectedTexts': firestore.ArrayUnion([texts[i]])
+            })
+
         
 def getInterviews(networkID):
+    network = db.collection("Networks").document(networkID).get()
+    network = network.to_dict()
+    return network["approvedTexts"]
+
+
+def getHostNetworks(hostID):
+    doc_ref = db.collection("Hosts").document(hostID)
+    networkIDS = doc_ref.to_dict()["networkIDS"]
+    return networkIDS
+
+def addHost(hostID):
+    doc_ref = db.collection("Hosts").document(hostID)
+    newHostData = {
+        "networkIDS" : [""],
+        }
+    doc_ref.set(newHostData)
     return
+
+def addNetworkID(hostID, networkID):
+    doc_ref = db.collection("Hosts").document(hostID)
+    doc_ref.update({
+        'networkIDS': firestore.ArrayUnion([networkID])
+    })
+    return
+
+
 
 

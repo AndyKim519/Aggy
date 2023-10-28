@@ -7,10 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-
-    newNetwork(networkName="A", networkDetails="B", presetQuestions="C")
-    
-    return ":D"
+    return "ROOT"
 
 
 if __name__ == '__main__':

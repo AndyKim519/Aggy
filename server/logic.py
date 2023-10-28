@@ -17,5 +17,8 @@ def generate_unique_network_id(db):
             
     return network_id
 
-def validityCheck(networkID, text):
-    return True
+def validityCheck(networkID, interviews):
+    results = []
+    for interview in interviews:
+        results.append(True)
+    return results

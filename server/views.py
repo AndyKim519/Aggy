@@ -12,3 +12,24 @@ def createNetwork():
     presetQuestions = req_data.get('presetQuestions')
     newNetwork(networkName=networkName, networkDetails=networkDetails, presetQuestions=presetQuestions)
 
+@app_views.route('/postaudio', methods=['POST'])
+def postAudio():
+    req_data = request.get_json()
+    audio_file = req_data.get('audio')
+    return
+
+@app_views.route('/postforsummary', methods=['POST'])
+def postForSummary():
+    req_data = request.get_json()
+    networkID = req_data.get('networkID')
+    return
+
+@app.views.route('/postforquestion', methods=['POST'])
+def postForQuestion():
+    req_data = request.get_json()
+    networkID = req_data.get('networkID')
+    question = req_data.get('question')
+    return
+
+
+
