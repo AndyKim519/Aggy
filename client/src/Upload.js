@@ -51,7 +51,7 @@ function Upload() {
       networkID: id,
       audio: audio,
     };
-    console.log(3);
+    console.log(serverport + "/postaudio");
     try {
       const response = await axios.post(serverport + "/postaudio", finalData);
       console.log("Server responded with:", response.data);
