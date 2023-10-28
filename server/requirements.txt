@@ -18,8 +18,6 @@ google-cloud-storage==2.12.0
 google-crc32c==1.5.0
 google-resumable-media==2.6.0
 googleapis-common-protos==1.61.0
-grpcio==1.59.0
-grpcio-status==1.59.0
 httplib2==0.22.0
 idna==3.4
 itsdangerous==2.1.2
@@ -38,3 +36,12 @@ rsa==4.9
 uritemplate==4.1.1
 urllib3==2.0.7
 Werkzeug==3.0.1
+openai==0.28.1
+grpcio==1.58.0
+together==0.2.6
+pymilvus==2.3.2
+pandas==1.5.3
+langchain==0.0.325
+tiktoken==0.5.1
+together
+
