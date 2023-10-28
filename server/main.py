@@ -6,6 +6,8 @@ from views import app_views
 app = Flask(__name__)
 CORS(app)
 
+app.register_blueprint(app_views)
+
 
 @app.route('/')
 def index():

@@ -23,10 +23,13 @@ def newNetwork(networkName, networkDetails, presetQuestions):
     doc_ref.set(new_network_data)
 
 def userInput(networkID, text):
+    print(11)
     doc_ref = db.collection("Networks").document(networkID)
+    print(12)
     doc_ref.update({
         'userTexts': firestore.ArrayUnion([text])
     })
+    print(13)
     return
 
 def checkTextsValidity(networkID):
