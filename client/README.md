@@ -24,6 +24,8 @@ src/host/Summary.js: React component for Summary page
 
 # When you first pull the repository  
 
+***make sure you cd into the server folder!!!!!*** 
+
 When you first pull: npm install # install all relevant depndencies that are listed in package.json  
 
 To run: npm start  
