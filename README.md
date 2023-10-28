@@ -1,4 +1,4 @@
 # Aggy
 
-client: frontend (react)
+client: frontend (react)  
 server: backend (flask)
