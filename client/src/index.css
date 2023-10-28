@@ -47,5 +47,17 @@
 .summary {
   display: flex;
   justify-content: space-between;
-  height: 90vh;
+  height: 40vh;
+}
+
+.response {
+  width: 48%; 
+  margin-right: 2%;
+}
+
+.outputbox {
+  border: 1px solid black;
+  width: 100%;
+  height: calc(80vh - 60px);
+  overflow: auto;
 }
