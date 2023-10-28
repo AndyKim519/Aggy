@@ -1,4 +1,4 @@
-# Relevant information for the client server  
+# Relevant information for the frontend server  
 
 public/index.html: root html that is loaded when we run npm start  
 
