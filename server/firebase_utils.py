@@ -21,16 +21,14 @@ def newNetwork(networkName, networkDetails, presetQuestions):
         }
     doc_ref = db.collection("Networks").document(newID)
     doc_ref.set(new_network_data)
+    return networkDetails
 
 def userInput(networkID, text):
-    print(11)
     doc_ref = db.collection("Networks").document(networkID)
-    print(12)
     doc_ref.update({
         'userTexts': firestore.ArrayUnion([text])
     })
-    print(13)
-    return
+    return networkID
 
 def checkTextsValidity(networkID):
     doc_ref = db.collection("Networks").document(networkID)
@@ -64,14 +62,14 @@ def addHost(hostID):
         "networkIDS" : [""],
         }
     doc_ref.set(newHostData)
-    return
+    return hostID
 
 def addNetworkID(hostID, networkID):
     doc_ref = db.collection("Hosts").document(hostID)
     doc_ref.update({
         'networkIDS': firestore.ArrayUnion([networkID])
     })
-    return
+    return networkID
 
 
 

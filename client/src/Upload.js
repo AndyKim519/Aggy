@@ -3,6 +3,8 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 
+const OPENAI_API_KEY = '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';
+
 function Upload() {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({ audio: true });
@@ -36,29 +38,57 @@ function Upload() {
   };
 
   const handleSubmit = async () => {
-    let audio;
-    console.log(1);
+    // Check if there's recorded or uploaded audio, and prepare it for the request.
+    let audioData;
     if (mediaBlobUrl) {
-      audio = mediaBlobUrl;
+      // If the audio is recorded online, you need to fetch the actual blob data.
+      const response = await fetch(mediaBlobUrl);
+      audioData = await response.blob(); // This is your audio file blob data.
     } else if (uploadedFile) {
-      audio = uploadedFile;
+      audioData = uploadedFile; // If the file is uploaded, you directly have the file.
     } else {
       console.error("No audio to upload.");
       return;
     }
-    console.log(2);
-    const finalData = {
-      networkID: id,
-      audio: audio,
-    };
-    console.log(serverport + "/postaudio");
+  
+    // Prepare the data and headers for the request to OpenAI.
+    const formData = new FormData();
+    formData.append("file", audioData, "openai.mp3"); // Append the file to form data.
+    formData.append("model", "whisper-1"); // Specify the model to use for transcription.
+  
     try {
-      const response = await axios.post(serverport + "/postaudio", finalData);
-      console.log("Server responded with:", response.data);
+
+      const response = await axios.post("https://api.openai.com/v1/audio/transcriptions", formData, {
+        headers: {
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+
+        }
+      });
+      console.log(response)
+
+      if (response.data) {
+        const transcription = response.data.text;
+        console.log("Transcription: ", transcription);
+        console.log("ID:", id)
+
+        const finalData = {
+          networkID: id,
+          text: transcription,
+        };
+        console.log(finalData)
+        console.log(serverport + "/postaudio");
+        try {
+          const response = await axios.post(serverport + "/postaudio", finalData);
+          console.log("Server responded with:", response.data);
+        } catch (error) {
+          console.error("Error uploading:", error);
+        }
+
+      }
     } catch (error) {
-      console.error("Error uploading:", error);
+      console.error("There was an error sending the request to OpenAI:", error);
     }
-    console.log(4);
+  
     clearBlobUrl();
     setUploadedFile(null);
     setHasSavedRecording(false);

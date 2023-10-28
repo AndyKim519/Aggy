@@ -18,15 +18,11 @@ def createNetwork():
 
 @app_views.route('/postaudio', methods=['POST'])
 def postAudio():
-    print(1)
     req_data = request.get_json()
     networkID = req_data.get('networkID')
-    audio_file = req_data.get('audio')
-    print(2)
-    convertedText = handleAudio(audio_file)
-    print(3)
+    audio_file = req_data.get('text')
+    convertedText = handleInterview(audio_file)
     userInput(networkID, convertedText)
-    print(4)
     return networkID
 
 
