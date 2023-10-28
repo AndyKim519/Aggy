@@ -13,5 +13,10 @@ After doing the three steps above you have set up your virtual environment where
 
 1. source venv/bin/activate  
 2. python3 main.py  
-3. deactivate
+3. deactivate  
 
+When there are new edits to requirements.txt:
+
+1. source venv/bin/activate  
+2. pip install -r requirements.txt  
+3. deactivate  
