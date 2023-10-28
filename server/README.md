@@ -1,8 +1,12 @@
+# Relevant information for client server  
+
 server.py: root server (imports database.py and logic.py)  
 database.py: deals with database works  
 logic.py: deals with ML APIs  
 
-When you first pull (make sure you cd into the server folder):  
+# When you first pull 
+
+(make sure you cd into the server folder)  
 
 1. python3 -m venv venv # creates your virtual environment  
 2. source venv/bin/activate # activates your virtual environment  
