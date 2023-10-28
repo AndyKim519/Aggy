@@ -1,4 +1,4 @@
-# Relevant information for backend server  
+# Relevant information for the backend server  
 
 server.py: root server (imports database.py and logic.py)  
 database.py: deals with database works  
