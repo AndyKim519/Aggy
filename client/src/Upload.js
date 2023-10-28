@@ -11,7 +11,7 @@ function Upload() {
   const [hasSavedRecording, setHasSavedRecording] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const audioRef = useRef(null);
-  const serverport = "http://127.0.0.1:5000";
+  const serverport = "http://127.0.0.1:5000"; // Flask server port
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -37,7 +37,6 @@ function Upload() {
 
   const handleSubmit = async () => {
     let audio;
-    console.log(1);
     if (mediaBlobUrl) {
       audio = mediaBlobUrl;
     } else if (uploadedFile) {
@@ -46,19 +45,18 @@ function Upload() {
       console.error("No audio to upload.");
       return;
     }
-    console.log(2);
     const finalData = {
       networkID: id,
       audio: audio,
     };
-    console.log(serverport + "/postaudio");
     try {
       const response = await axios.post(serverport + "/postaudio", finalData);
+      console.log(12);
       console.log("Server responded with:", response.data);
     } catch (error) {
+      console.log(13);
       console.error("Error uploading:", error);
     }
-    console.log(4);
     clearBlobUrl();
     setUploadedFile(null);
     setHasSavedRecording(false);
