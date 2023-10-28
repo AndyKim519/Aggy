@@ -11,6 +11,7 @@ function Upload() {
   const [hasSavedRecording, setHasSavedRecording] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const audioRef = useRef(null);
+  const serverport = "http://127.0.0.1:5000";
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -35,26 +36,29 @@ function Upload() {
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("id", id);
-
+    let audio;
+    console.log(1);
     if (mediaBlobUrl) {
-      const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
-      formData.append("audio", audioBlob, "myRecording.webm");
+      audio = mediaBlobUrl;
     } else if (uploadedFile) {
-      formData.append("audio", uploadedFile);
+      audio = uploadedFile;
     } else {
       console.error("No audio to upload.");
       return;
     }
-
+    console.log(2);
+    const finalData = {
+      networkID: id,
+      audio: audio,
+    };
+    console.log(3);
     try {
-      const response = await axios.post("YOUR_API_ENDPOINT", formData);
+      const response = await axios.post(serverport + "/postaudio", finalData);
       console.log("Server responded with:", response.data);
     } catch (error) {
       console.error("Error uploading:", error);
     }
-
+    console.log(4);
     clearBlobUrl();
     setUploadedFile(null);
     setHasSavedRecording(false);
@@ -64,7 +68,7 @@ function Upload() {
     <div>
       <input
         type="text"
-        placeholder="Enter ID"
+        placeholder="Enter Network ID"
         value={id}
         onChange={(e) => setId(e.target.value)}
       />
