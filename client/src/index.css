@@ -43,3 +43,9 @@
   margin: 40px auto;
   padding: 20px;
 }
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  height: 90vh;
+}
