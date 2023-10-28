@@ -21,6 +21,8 @@ To run: npm start
 
 ***make sure you cd into the server folder!!!!!*** 
 
+When you first pull:
+
 1. python3 -m venv venv # creates your virtual environment  
 2. source venv/bin/activate # activates your virtual environment  
 3. pip install -r requirements.txt # download all depndencies for the server  
