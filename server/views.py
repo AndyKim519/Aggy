@@ -41,5 +41,5 @@ def postForQuestion():
     req_data = request.get_json()
     networkID = req_data.get('networkID')
     question = req_data.get('question')
-    response = handleQuestion(networkID, question)
+    response = handleQuestion(networkID, question, getEvent(networkID))
     return response

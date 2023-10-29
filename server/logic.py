@@ -40,7 +40,7 @@ def generate_unique_network_id(db):
 def validityCheck(networkID, interviews, event):
     prompt_start = "Question: Given the event: "
     prompt_end = "' a valid, relevant, and appropriate account. If it is, only restate the response, if not, simply respond 'no'. Answer: "
-
+    together.api_key = "b95308a73c8412667add021f3ccac2954a6f12e73b2431fa330472577e578c3e"
     results = []
     for interview in interviews:
         time.sleep(1)
