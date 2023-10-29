@@ -12,8 +12,8 @@ def createNetwork():
     networkName = req_data.get('networkName')
     networkDetails = req_data.get('networkDetails')
     presetQuestions = req_data.get('presetQuestions')
-    newNetwork(networkName=networkName, networkDetails=networkDetails,
-               presetQuestions=presetQuestions)
+    return newNetwork(networkName=networkName, networkDetails=networkDetails,
+                      presetQuestions=presetQuestions)
 
 
 @app_views.route('/postaudio', methods=['POST'])
