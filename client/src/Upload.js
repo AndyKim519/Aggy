@@ -3,7 +3,7 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = "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";
 
 function Upload() {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
@@ -50,45 +50,49 @@ function Upload() {
       console.error("No audio to upload.");
       return;
     }
-  
+
     // Prepare the data and headers for the request to OpenAI.
     const formData = new FormData();
     formData.append("file", audioData, "openai.mp3"); // Append the file to form data.
     formData.append("model", "whisper-1"); // Specify the model to use for transcription.
-  
+
     try {
-
-      const response = await axios.post("https://api.openai.com/v1/audio/transcriptions", formData, {
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-
+      const response = await axios.post(
+        "https://api.openai.com/v1/audio/transcriptions",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${OPENAI_API_KEY}`,
+          },
         }
-      });
-      console.log(response)
+      );
+      console.log(response);
 
       if (response.data) {
         const transcription = response.data.text;
         console.log("Transcription: ", transcription);
-        console.log("ID:", id)
+        console.log("ID:", id);
 
         const finalData = {
           networkID: id,
           text: transcription,
         };
-        console.log(finalData)
+        console.log(finalData);
         console.log(serverport + "/postaudio");
         try {
-          const response = await axios.post(serverport + "/postaudio", finalData);
+          const response = await axios.post(
+            serverport + "/postaudio",
+            finalData
+          );
           console.log("Server responded with:", response.data);
         } catch (error) {
           console.error("Error uploading:", error);
         }
-
       }
     } catch (error) {
       console.error("There was an error sending the request to OpenAI:", error);
     }
-  
+
     clearBlobUrl();
     setUploadedFile(null);
     setHasSavedRecording(false);
@@ -96,6 +100,7 @@ function Upload() {
 
   return (
     <div>
+      <h1>Upload Page</h1>
       <input
         type="text"
         placeholder="Enter Network ID"

@@ -49,7 +49,7 @@ const Summary = () => {
 
   return (
     <div>
-      <h2>Summary: {status}</h2>
+      <h1>Summary: {status}</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}{" "}
       {/* Display error if it exists */}
       <div className="summary">

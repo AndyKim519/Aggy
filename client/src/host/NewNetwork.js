@@ -5,8 +5,8 @@ const NewNetwork = () => {
   const [networkName, setNetworkName] = useState("");
   const [networkDetails, setNetworkDetails] = useState("");
   const [presetQuestions, setPresetQuestions] = useState("");
-  const [idee, setID] = useState("");
-  const serverport = "http://127.0.0.1:5000";
+  const [id, setID] = useState("");
+  const serverport = "http://127.0.0.1:5000"; // Flask server port
 
   const handleApiRequest = async () => {
     try {
@@ -26,7 +26,7 @@ const NewNetwork = () => {
 
   return (
     <div>
-      <h2>Create New Network</h2>
+      <h1>Create New Network</h1>
       <div className="newnetwork">
         <div>
           <input
@@ -38,6 +38,7 @@ const NewNetwork = () => {
         </div>
         <div>
           <textarea
+            className="big-input"
             value={networkDetails}
             onChange={(e) => setNetworkDetails(e.target.value)}
             placeholder="Enter Network Details"
@@ -45,16 +46,16 @@ const NewNetwork = () => {
           />
         </div>
         <div>
-          <input
-            type="text"
+          <textarea
+            className="big-input"
             value={presetQuestions}
             onChange={(e) => setPresetQuestions(e.target.value)}
             placeholder="Enter Preset Questions"
-            style={{ width: "70%" }}
+            rows="4"
           />
         </div>
         <div>
-        {idee}
+          Network id: <div className="smalloutputbox">{id}</div>
         </div>
         <div>
           <button onClick={handleApiRequest}>Send Data</button>
