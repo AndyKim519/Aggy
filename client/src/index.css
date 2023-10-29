@@ -50,6 +50,11 @@
   height: 40vh;
 }
 
+.newnetwork {
+  justify-content: space-between;
+  height: 40vh;
+}
+
 .response {
   width: 48%; 
   margin-right: 2%;
@@ -60,4 +65,28 @@
   width: 100%;
   height: calc(80vh - 60px);
   overflow: auto;
+}
+
+.smalloutputbox {
+  border: 1px solid black;
+  width: 20%;
+  height: calc(3vh);
+  overflow: auto;
+}
+
+
+.big-input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.big-input {
+  width: 98.5%; /* Adjust the width as needed */
+  height: 190px; /* Adjust the height as needed */
+  font-size: 16px; /* Adjust the font size as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; /* Allows vertical resizing */
 }

@@ -6,16 +6,17 @@ const NewNetwork = () => {
   const [networkDetails, setNetworkDetails] = useState("");
   const [presetQuestions, setPresetQuestions] = useState("");
   const [id, setID] = useState("");
+  const serverport = "http://127.0.0.1:5000"; // Flask server port
 
   const handleApiRequest = async () => {
     try {
-      const response = await axios.post("YOUR_API_ENDPOINT", {
-        networkName,
-        networkDetails,
-        presetQuestions,
-        id,
+      const response = await axios.post(serverport + "/createnetwork", {
+        networkName: networkName,
+        networkDetails: networkDetails,
+        presetQuestions: presetQuestions,
       });
       console.log(response.data);
+      setID(response.data);
       // Handle success scenario here (e.g. showing a success message)
     } catch (error) {
       console.error("Error sending data", error);
@@ -25,7 +26,7 @@ const NewNetwork = () => {
 
   return (
     <div>
-      <h2>Create New Network</h2>
+      <h1>Create New Network</h1>
       <div className="newnetwork">
         <div>
           <input
@@ -37,6 +38,7 @@ const NewNetwork = () => {
         </div>
         <div>
           <textarea
+            className="big-input"
             value={networkDetails}
             onChange={(e) => setNetworkDetails(e.target.value)}
             placeholder="Enter Network Details"
@@ -44,22 +46,16 @@ const NewNetwork = () => {
           />
         </div>
         <div>
-          <input
-            type="text"
+          <textarea
+            className="big-input"
             value={presetQuestions}
             onChange={(e) => setPresetQuestions(e.target.value)}
             placeholder="Enter Preset Questions"
-            style={{ width: "70%" }}
+            rows="4"
           />
         </div>
         <div>
-          <input
-            type="text"
-            value={id}
-            onChange={(e) => setID(e.target.value)}
-            placeholder="Network ID"
-            style={{ width: "30%" }}
-          />
+          Network id: <div className="smalloutputbox">{id}</div>
         </div>
         <div>
           <button onClick={handleApiRequest}>Send Data</button>
