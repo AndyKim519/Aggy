@@ -87,7 +87,8 @@ def build_llm(networkID, validated_data):
 
 
 
-def handleSummary(networkID, event):
+def handleSummary(networkID, event, validatedData):
+    build_llm(networkID, validatedData)
     summary = handleQuestion(networkID, "Provide a summary of the event.", event)
     return summary
 

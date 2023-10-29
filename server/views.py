@@ -12,8 +12,9 @@ def createNetwork():
     networkName = req_data.get('networkName')
     networkDetails = req_data.get('networkDetails')
     presetQuestions = req_data.get('presetQuestions')
-    newNetwork(networkName=networkName, networkDetails=networkDetails,
+    newID = newNetwork(networkName=networkName, networkDetails=networkDetails,
                presetQuestions=presetQuestions)
+    return newID
 
 
 @app_views.route('/postaudio', methods=['POST'])
@@ -30,7 +31,8 @@ def postAudio():
 def postForSummary():
     req_data = request.get_json()
     networkID = req_data.get('networkID')
-    summary = handleSummary(networkID)
+    validityCheck(networkID=networkID, interviews=getInterviews(networkID), event=getEvent(networkID))
+    summary = handleSummary(networkID, getEvent(networkID), getApprovedTexts(networkID))
     return summary
 
 

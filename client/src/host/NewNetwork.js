@@ -5,17 +5,18 @@ const NewNetwork = () => {
   const [networkName, setNetworkName] = useState("");
   const [networkDetails, setNetworkDetails] = useState("");
   const [presetQuestions, setPresetQuestions] = useState("");
-  const [id, setID] = useState("");
+  const [idee, setID] = useState("");
+  const serverport = "http://127.0.0.1:5000";
 
   const handleApiRequest = async () => {
     try {
-      const response = await axios.post("YOUR_API_ENDPOINT", {
-        networkName,
-        networkDetails,
-        presetQuestions,
-        id,
+      const response = await axios.post(serverport + "/createnetwork", {
+        networkName: networkName,
+        networkDetails: networkDetails,
+        presetQuestions: presetQuestions,
       });
       console.log(response.data);
+      setID(response.data);
       // Handle success scenario here (e.g. showing a success message)
     } catch (error) {
       console.error("Error sending data", error);
@@ -53,13 +54,7 @@ const NewNetwork = () => {
           />
         </div>
         <div>
-          <input
-            type="text"
-            value={id}
-            onChange={(e) => setID(e.target.value)}
-            placeholder="Network ID"
-            style={{ width: "30%" }}
-          />
+        {idee}
         </div>
         <div>
           <button onClick={handleApiRequest}>Send Data</button>

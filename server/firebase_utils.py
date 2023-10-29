@@ -21,7 +21,7 @@ def newNetwork(networkName, networkDetails, presetQuestions):
         }
     doc_ref = db.collection("Networks").document(newID)
     doc_ref.set(new_network_data)
-    return networkDetails
+    return newID
 
 def userInput(networkID, text):
     doc_ref = db.collection("Networks").document(networkID)
@@ -50,6 +50,15 @@ def getInterviews(networkID):
     network = network.to_dict()
     return network["approvedTexts"]
 
+def getEvent(networkID):
+    network = db.collection("Networks").document(networkID).get()
+    network = network.to_dict()
+    return network["networkDetails"]
+
+def getApprovedTexts(networkID):
+    network = db.collection("Networks").document(networkID).get()
+    network = network.to_dict()
+    return network["approvedTexts"]
 
 def getHostNetworks(hostID):
     doc_ref = db.collection("Hosts").document(hostID)
